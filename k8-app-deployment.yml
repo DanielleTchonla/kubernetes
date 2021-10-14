@@ -1,0 +1,22 @@
+apiVersion: apps/v1 # Required and depends on the object
+kind: Deployment # Deployment Object
+metadata: # Describe the object or the infrastructure acccording to what you are building
+  name: nginx-deployment
+  labels: # Tag
+    app: nginx #app name
+spec: # This is where you specify your pod or your container(where to look for your conatainer)
+  selector: #help objects with selector tag that match to talk to each other.
+    matchLabels: # use to tag as a match maker ei: app:nginx
+      app: nginx
+  replicas: 2 # kind of autoscaling for pods. it tells deployment to run 2 pods matching the template
+  template: # create a template for all the pods to be created
+    metadata:
+      labels:
+        app: nginx # all new pods will be tagged with this label
+    spec: # containers inside the pod
+      containers: # define a list of containers(we can add muliple conatiners)
+      - name: nginx
+        #image: danielletchonla/apache_webserver_tchonla:v1.0.0
+        image: nginx:1.21.3
+        ports:
+        - containerPort: 80
