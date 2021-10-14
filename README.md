@@ -1,2 +1,0 @@
-# kubernetes
-Orchestrate NGINX Apps
